@@ -1,15 +1,15 @@
 #!/usr/bin/python3
-"""Module for abstracting file storage"""
-
+"""Module file_storage :abstracts file storage"""
 import json
 import os
+
 
 class FileStorage:
     """(De)Serialize JSON files and load them"""
 
-    #Path to JSON file
-    _filepath = "/AirBnB_clone/file.json"
-    #Dictionary to store objects by id and class name
+    # Path to JSON file
+    _filepath = "file.json"
+    # Dictionary to store objects by id and class name
     _objects = dict()
 
     def all(self):
@@ -18,8 +18,9 @@ class FileStorage:
 
     def new(self, obj):
         """Adds new _obj to dictionay"""
-        key = str( obj.__class__.__name__ + "." + obj.id )
-        self._objects[key] = obj
+        key = str(obj.__class__.__name__ + "." + obj.id)
+        json_obj = obj.to_dict()
+        self._objects[key] = json_obj
 
     def save(self):
         """Serialize _obj to JSON"""

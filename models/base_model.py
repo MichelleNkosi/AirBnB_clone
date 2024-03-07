@@ -31,7 +31,8 @@ class BaseModel:
     def __str__(self):
         """How class instance appears when obj is printed"""
         return ("[{}] ({}) {}".format(self.__class__.__name__,
-                                    self.id, self.__dict__))
+                                      self.id,
+                                      self.__dict__))
 
     def save(self):
         """Saves the date/time that chanes were maed to instance"""
@@ -45,4 +46,3 @@ class BaseModel:
         dict['created_at'] = self.created_at.isoformat()
         dict['updated_at'] = self.updated_at.isoformat()
         return dict
-        
