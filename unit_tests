@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#Run all python unit tests
+
+python3 -m unittest discover tests
