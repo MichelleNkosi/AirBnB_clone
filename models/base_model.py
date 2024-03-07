@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """Base Model module"""
+from models.__init__ import storage
 import datetime
 import uuid
 date_time = datetime.datetime
@@ -9,11 +10,23 @@ genID = uuid.uuid4
 class BaseModel:
     """Base class for all AireBnB objects"""
 
-    def __init__(self):
-        """Initilize class instance"""
+    def __init__(self, *args, **kwargs):
+        """Initialize a new BaseModel.
+
+        Args:
+            *args (any): Unused.
+            **kwargs (dict): Key/value pairs of attributes.
+        """
+        """ OLD CODE. Should be refactored to use kwargs
         self.id = str(genID())
         self.created_at = date_time.now()
         self.updated_at = date_time.now()
+        """
+        if not kwargs:
+            self.id = str(genID())
+            self.created_at = date_time.now()
+            self.updated_at = date_time.now()
+            storage.new(self)
 
     def __str__(self):
         """How class instance appears when obj is printed"""
@@ -22,6 +35,7 @@ class BaseModel:
 
     def save(self):
         """Saves the date/time that chanes were maed to instance"""
+        storage.save()
         self.updated_at = date_time.now()
 
     def to_dict(self):
