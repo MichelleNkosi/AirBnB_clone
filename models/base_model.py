@@ -17,15 +17,17 @@ class BaseModel:
             *args (any): Unused.
             **kwargs (dict): Key/value pairs of attributes.
         """
-        """ OLD CODE. Should be refactored to use kwargs
+        tform = "%Y-%m-%dT%H:%M:%S.%f"
         self.id = str(genID())
         self.created_at = date_time.now()
         self.updated_at = date_time.now()
-        """
-        if not kwargs:
-            self.id = str(genID())
-            self.created_at = date_time.now()
-            self.updated_at = date_time.now()
+        if kwargs:
+            for k, v in kwargs.items():
+                if k == "created_at" or k == "updated_at":
+                    self.__dict__[k] = date_time.strptime(v, tform)
+                else:
+                    self.__dict__[k] = v
+        else:
             storage.new(self)
 
     def __str__(self):
@@ -35,9 +37,12 @@ class BaseModel:
                                       self.__dict__))
 
     def save(self):
-        """Saves the date/time that chanes were maed to instance"""
-        storage.save()
+        """Saves the date/time that changes were made to instance"""
+        key = str(self.__class__.__name__ + "." + self.id)
+        storage.delete(key)
         self.updated_at = date_time.now()
+        storage.new(self)
+        storage.save()
 
     def to_dict(self):
         """Change obj data when saved in dict to readable"""
