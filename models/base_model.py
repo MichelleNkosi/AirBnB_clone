@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """Base Model module"""
+from models.__init__ import storage
 import datetime
 import uuid
 date_time = datetime.datetime
@@ -24,30 +25,28 @@ class BaseModel:
         if len(kwargs) != 0:
             for k, v in kwargs.items():
                 if k == "created_at" or k == "updated_at":
-                    self.__dict__[k] = datetime.strptime(v, tform)
+                    self.__dict__[k] = date_time.strptime(v, tform)
                 else:
                     self.__dict__[k] = v
         else:
-            models.storage.new(self)
+            storage.new(self)
+
+    def __str__(self):
+        """How class instance appears when obj is printed"""
+        return ("[{}] ({}) {}".format(self.__class__.__name__,
+                                      self.id,
+                                      self.__dict__))
 
     def save(self):
         """Saves the date/time that changes were made to instance"""
+        storage.save()
         self.updated_at = date_time.now()
 
 
     def to_dict(self):
-        """Return the dictionary of the BaseModel instance.
-
-        Includes the key/value pair __class__ representing
-        the class name of the object.
-        """
-        rdict = self.__dict__.copy()
-        rdict["created_at"] = self.created_at.isoformat()
-        rdict["updated_at"] = self.updated_at.isoformat()
-        rdict["__class__"] = self.__class__.__name__
-        return rdict
-
-    def __str__(self):
-        """Return the print/str representation of the BaseModel instance."""
-        clname = self.__class__.__name__
-        return "[{}] ({}) {}".format(clname, self.id, self.__dict__)
+        """Change obj data when saved in dict to readable"""
+        dict = self.__dict__.copy()
+        dict['__class__'] = self.__class__.__name__
+        dict['created_at'] = self.created_at.isoformat()
+        dict['updated_at'] = self.updated_at.isoformat()
+        return dict

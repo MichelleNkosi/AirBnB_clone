@@ -1,10 +1,14 @@
 #!/usr/bin/python3
-"""Module for unit testsing the base Model"""
+"""test_base_module
+Module for unit testsing the base Model
+"""
+
 
 import unittest
-from unittest.mock import patch
 from datetime import datetime
 from models.base_model import BaseModel
+from models.__init__ import storage
+import os
 
 class TestBaseModel(unittest.TestCase):
 
@@ -12,17 +16,22 @@ class TestBaseModel(unittest.TestCase):
         """Creat BaseModel obj before each test methode"""
         self.model = BaseModel()
 
-    def test_id_generation(self):
+    def tearDown(self):
+        """Run at the end of test"""
+        if os.path.exists("~/AirBnB_clone/file.json"):
+            os.remove("file.json")
+    
+    def test_id_generation_exists(self):
         """Check if id is correct type"""
         self.assertTrue(hasattr(self.model, 'id'))
         self.assertIsInstance(self.model.id, str)
 
-    def test_created_at(self):
+    def test_created_at_exists(self):
         """Check if created_at is correct type"""
         self.assertTrue(hasattr(self.model, 'created_at'))
         self.assertIsInstance(self.model.created_at, datetime)
 
-    def test_updated_at(self):
+    def test_updated_at_exists(self):
         """Check if updated_at is correct type"""
         self.assertTrue(hasattr(self.model, 'updated_at'))
         self.assertIsInstance(self.model.updated_at, datetime)
@@ -41,7 +50,7 @@ class TestBaseModel(unittest.TestCase):
         expected_keys = ['__class__', 'id', 'created_at', 'updated_at']
         self.assertEqual(set(self.model.to_dict().keys()), set(expected_keys))
 
-    def test_str(self):
+    def test_str_representation(self):
         expected_str = "[BaseModel] ({}) {}".format(self.model.id, self.model.__dict__)
         self.assertEqual(str(self.model), expected_str)
 
