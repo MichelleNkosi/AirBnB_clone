@@ -29,6 +29,9 @@ class FileStorage:
 
     def reload(self):
         """deserialize JSON to _obj"""
+        print("Reload has been called")
         if os.path.isfile(self._filepath):
+            print("JSON file exists")
             with open(self._filepath, "r") as file:
                 self._objects = json.load(file)
+                print("JSON file loaded")
