@@ -4,14 +4,15 @@ import cmd
 from models.base_model import BaseModel
 from models.__init__ import storage
 
+
 class HBNBCommand(cmd.Cmd):
     """Class contains all custom CMD commands"""
 
     prompt = "(hbnb)"
-    
+
     def do_quit(self, args):
         """This quits or exits the program"""
-        return True    
+        return True
     do_EOF = do_quit
 
     def do_create(self, args):
@@ -19,7 +20,7 @@ class HBNBCommand(cmd.Cmd):
         Usage: create BaseModel"""
         if args == "":
             print("** class name missing **")
-        elif args == "BaseModel":            
+        elif args == "BaseModel":
             new_obj = BaseModel()
             new_obj.save()
             print(new_obj.id)
@@ -27,10 +28,11 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_show(self, args):
-        """Print string representation of instance based on class name and ID"""
+        """Print string representation of instance based
+        on class name and ID"""
         args_list = args.split()
         if len(args_list) < 1:
-            print("** class name missing **")            
+            print("** class name missing **")
         elif args_list[0] == "BaseModel":
             if len(args_list) < 2:
                 print("** instance id missing **")
@@ -42,13 +44,13 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     print("** no instance found **")
         else:
-            print("** class doesn't exist **")            
+            print("** class doesn't exist **")
 
     def do_destroy(self, args):
         """Deletes instance base on class name and id"""
         args_list = args.split()
         if len(args_list) < 1:
-            print("** class name missing **")            
+            print("** class name missing **")
         elif args_list[0] == "BaseModel":
             if len(args_list) < 2:
                 print("** instance id missing **")
@@ -69,7 +71,6 @@ class HBNBCommand(cmd.Cmd):
         """Updates instance based on Class name and id(updates attributes)
         Usage: update <Class name>.<id> attribut value"""
         pass
-
 
 
 if __name__ == '__main__':
