@@ -8,30 +8,27 @@ class FileStorage:
     """(De)Serialize JSON files and load them"""
 
     # Path to JSON file
-    _filepath = "file.json"
+    __filepath = "file.json"
     # Dictionary to store objects by id and class name
-    _objects = dict()
+    __objects = dict()
 
     def all(self):
         """Returns all _objs in dictionary"""
-        return self._objects
+        return self.__objects
 
     def new(self, obj):
         """Adds new _obj to dictionay"""
         key = str(obj.__class__.__name__ + "." + obj.id)
         json_obj = obj.to_dict()
-        self._objects[key] = json_obj
+        self.__objects[key] = json_obj
 
     def save(self):
         """Serialize _obj to JSON"""
-        with open(self._filepath, "a") as file:
-            json.dump(self._objects, file)
+        with open(self.__filepath, "w") as file:
+            json.dump(self.__objects, file)
 
     def reload(self):
         """deserialize JSON to _obj"""
-        print("Reload has been called")
-        if os.path.isfile(self._filepath):
-            print("JSON file exists")
-            with open(self._filepath, "r") as file:
-                self._objects = json.load(file)
-                print("JSON file loaded")
+        if os.path.isfile(self.__filepath):
+            with open(self.__filepath, "r") as file:
+                self.__objects = json.load(file)

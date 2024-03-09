@@ -4,4 +4,4 @@ from models.engine.file_storage import FileStorage
     Called whenever the packed is imported
 """
 storage = FileStorage()
-storage.reload
+storage.reload()

@@ -26,6 +26,8 @@ class BaseModel:
             for k, v in kwargs.items():
                 if k == "created_at" or k == "updated_at":
                     self.__dict__[k] = date_time.strptime(v, tform)
+                elif k == "__class__":
+                    pass
                 else:
                     self.__dict__[k] = v
         else:
