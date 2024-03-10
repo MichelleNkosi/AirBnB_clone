@@ -131,15 +131,28 @@ class HBNBCommand(cmd.Cmd):
                 print("** value missing **")
                 return False
         return True
+    
+    def do_count(self, args):
+        """Counts number of instances of a class exit"""
+        if args in self.model_list:
+            storage.reload()
+            count = 0
+            all_objs = storage.all()
+            for class_id, model in all_objs.items():
+                class_key = class_id.split(".")
+                class_name = class_key[0]
+                if class_name == args:
+                    count += 1
+            print(count)
 
-    def precmd(self, line: str):
+    def precmd(self, args: str):
         """Called before the command is executed"""
-        if "." in line:
-            class_name, method_name = line.split(".", 1)
+        if "." in args:
+            class_name, method_name = args.split(".", 1)
             if class_name in self.model_list:
                 method_name = method_name.replace("(", "").replace(")", "")
                 return "{} {}".format(method_name, class_name)
-        return line
+        return args
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
