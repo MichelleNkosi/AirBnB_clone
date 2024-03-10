@@ -10,7 +10,7 @@ class HBNBCommand(cmd.Cmd):
     """Class contains all custom CMD commands"""
 
     prompt = "(hbnb)"
-    model_list = ["BaseModel"]
+    model_list = ["BaseModel", "User", "City", "Place", "Review", "Amenity"]
 
     def do_quit(self, args):
         """This quits or exits the program"""
