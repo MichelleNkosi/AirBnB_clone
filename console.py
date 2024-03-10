@@ -79,7 +79,7 @@ class HBNBCommand(cmd.Cmd):
                     obj = class_obj(**model)
                     print(obj)
 
-        elif args in self.model_list:
+        if args in self.model_list:
             all_objs = storage.all()
             for class_id, model in all_objs.items():
                 class_key = class_id.split(".")
@@ -132,6 +132,14 @@ class HBNBCommand(cmd.Cmd):
                 return False
         return True
 
+    def precmd(self, line: str):
+        """Called before the command is executed"""
+        if "." in line:
+            class_name, method_name = line.split(".", 1)
+            if class_name in self.model_list:
+                method_name = method_name.replace("(", "").replace(")", "")
+                return "{} {}".format(method_name, class_name)
+        return line
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
