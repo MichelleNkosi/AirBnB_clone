@@ -27,13 +27,15 @@ class FileStorage:
         with open(self.__filepath, "w") as file:
             json.dump(self.__objects, file)
 
+    def delete(self, class_id):
+        self.__objects.pop(class_id)
 
     def reload(self):
         """Deserialize JSON to _obj"""
         if os.path.isfile(self.__filepath):
             with open(self.__filepath, "r") as file:
                 self.__objects = json.load(file)
-                
+
     """def reload(self):
         Deserialize JSON to _obj
         if os.path.isfile(self.__filepath):
@@ -50,4 +52,3 @@ class FileStorage:
         else:
             print("Error: File not found.")
         """
-            

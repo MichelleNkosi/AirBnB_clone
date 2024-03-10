@@ -1,7 +1,13 @@
 #!/usr/bin/python3
 """Module console.py: controles the interaction with the models"""
 import cmd
+from models.amenity import Amenity
 from models.base_model import BaseModel
+from models.city import City
+from models.state import State
+from models.place import Place
+from models.review import Review
+from models.user import User
 from models.__init__ import storage
 import shlex
 
@@ -19,7 +25,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, args):
         """Create new BaseModel Obj
-        Usage: create BaseModel"""
+        Usage: create <Class Name>"""
         if not args:
             print("** class name missing **")
         elif args in self.model_list:

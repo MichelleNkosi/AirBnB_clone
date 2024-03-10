@@ -46,8 +46,6 @@ class BaseModel:
         storage.new(self)
         storage.save()
 
-
-
     def to_dict(self):
         """Change obj data when saved in dict to readable"""
         dict = self.__dict__.copy()
