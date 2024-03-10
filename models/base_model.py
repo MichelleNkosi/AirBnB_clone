@@ -7,9 +7,8 @@ date_time = datetime.datetime
 genID = uuid.uuid4
 
 
-
 class BaseModel:
-    """Represents the BaseModel of the AirBnB project."""
+    """Base class for all AireBnB objects"""
 
     def __init__(self, *args, **kwargs):
         """Initialize a new BaseModel.
@@ -41,8 +40,12 @@ class BaseModel:
 
     def save(self):
         """Saves the date/time that changes were made to instance"""
-        storage.save()
+        key = str(self.__class__.__name__ + "." + self.id)
+        storage.delete(key)        
         self.updated_at = date_time.now()
+        storage.new(self)
+        storage.save()
+
 
 
     def to_dict(self):
