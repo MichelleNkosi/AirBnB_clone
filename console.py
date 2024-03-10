@@ -3,6 +3,7 @@
 import cmd
 from models.base_model import BaseModel
 from models.__init__ import storage
+import shlex
 
 
 class HBNBCommand(cmd.Cmd):
@@ -38,7 +39,10 @@ class HBNBCommand(cmd.Cmd):
             all_objs = storage.all()
             class_id = args_list[0] + "." + args_list[1]
             if class_id in all_objs.keys():
-                print(all_objs[class_id])
+                obj_dict = all_objs[class_id]
+                obj_class = globals().get(args_list[0])
+                obj = obj_class(**obj_dict)
+                print(obj)
             else:
                 print("** no instance found **")
 
@@ -85,7 +89,7 @@ class HBNBCommand(cmd.Cmd):
     def do_update(self, args):
         """Updates instance based on Class name and id(updates attributes)
         Usage: update <Class name>.<id> attribut value"""
-        args_list = args.split()
+        args_list = shlex.split(args)
         storage.reload()
         if self.check_args(args_list, 4):
             all_objs = storage.all()
