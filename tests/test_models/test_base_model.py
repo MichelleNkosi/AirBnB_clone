@@ -2,15 +2,15 @@
 """test_base_module
 Module for unit testsing the base Model
 """
-
-
 import unittest
 from datetime import datetime
 from models.base_model import BaseModel
 from models.__init__ import storage
 import os
 
+
 class TestBaseModel(unittest.TestCase):
+    """Test the Base Model"""
 
     def setUp(self):
         """Creat BaseModel obj before each test methode"""
@@ -20,7 +20,7 @@ class TestBaseModel(unittest.TestCase):
         """Run at the end of test"""
         if os.path.exists("~/AirBnB_clone/file.json"):
             os.remove("file.json")
-    
+
     def test_id_generation_exists(self):
         """Check if id is correct type"""
         self.assertTrue(hasattr(self.model, 'id'))
@@ -51,8 +51,11 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(set(self.model.to_dict().keys()), set(expected_keys))
 
     def test_str_representation(self):
-        expected_str = "[BaseModel] ({}) {}".format(self.model.id, self.model.__dict__)
+        """Check string representtion of BaseModel"""
+        expected_str = "[BaseModel] ({}) {}".format(self.model.id,
+                                                    self.model.__dict__)
         self.assertEqual(str(self.model), expected_str)
+
 
 if __name__ == '__main__':
     unittest.main()
