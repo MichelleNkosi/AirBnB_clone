@@ -28,14 +28,18 @@ class FileStorage:
             json.dump(self.__objects, file)
 
     def reload(self):
-        """deserialize JSON to _obj"""
-        if os.path.isfile(self.___filepath):
-            with open(self.___filepath, "r") as file:
-                obj_dict = json.load(file)
-                for key, value in obj_dict.items():
-                    class_name, obj_id = key.split(".")
-                    obj_class = models.classes[class_name]
-                self.___objects = json.load(file)
+    """Deserialize JSON to _obj"""
+    if os.path.isfile(self.__filepath):
+        with open(self.__filepath, "r") as file:
+            obj_dict = json.load(file)
+            for key, value in obj_dict.items():
+                class_name, obj_id = key.split(".")
+                obj_class = models.classes.get(class_name)
+                if obj_class:
+                    instance = obj_class(**value)
+                    self.__objects[key] = instance
+                else:
+                    print(f"Error: Class {class_name} not found.")
+    else:
+        print("Error: File not found.")
 
-    def delete(self, class_id):
-        self.__objects.pop(class_id)
