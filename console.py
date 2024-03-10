@@ -50,13 +50,13 @@ class HBNBCommand(cmd.Cmd):
         """Deletes instance base on class name and id"""
         args_list = args.split()
         if self.check_args(args_list, 2) is True:
-                all_objs = storage.all()
-                class_id = args_list[0] + "." + args_list[1]
-                if class_id in all_objs.keys():
-                    storage.delete(class_id)
-                    storage.save()
-                else:
-                    print("** no instance found **")
+            all_objs = storage.all()
+            class_id = args_list[0] + "." + args_list[1]
+            if class_id in all_objs.keys():
+                storage.delete(class_id)
+                storage.save()
+            else:
+                print("** no instance found **")
 
     def do_all(self, args):
         """Prints string representation of all instances.

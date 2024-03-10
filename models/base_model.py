@@ -39,7 +39,7 @@ class BaseModel:
     def save(self):
         """Saves the date/time that changes were made to instance"""
         key = str(self.__class__.__name__ + "." + self.id)
-        storage.delete(key)        
+        storage.delete(key)
         self.updated_at = date_time.now()
         storage.new(self)
         storage.save()
