@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cp $1-index.html $2-index.html
+
+# cp 6-index.html 7-index.html
+
+cp styles/$1-filters.css styles/$2-filters.css
+
+echo "Version $2 of files created"
