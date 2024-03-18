@@ -85,6 +85,9 @@ section.filters h4{
 
 .popover .statelist{
     list-style: none;
+}
+
+.popover li{
     font-size: 16px;
     font-weight: 600;
 }
