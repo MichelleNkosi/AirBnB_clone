@@ -107,6 +107,7 @@ article .user{
 
 article .description{
     margin-left: -5%;
-    text-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
     width: 100%;
 }
