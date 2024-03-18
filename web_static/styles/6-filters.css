@@ -4,7 +4,9 @@
     width: 100%;
     border: 1px solid #DDDDDD;
     border-radius: 4px;
-    position: relative;
+    margin-top: 10px;
+    padding-top: 0px;
+    position: static;
 }
 
 section.filters button{
@@ -83,14 +85,13 @@ section.filters h4{
 
 .popover .statelist{
     list-style: none;
-}
-
-.popover .statelist h2{
     font-size: 16px;
+    font-weight: 600;
 }
 
 .popover .statelist li{
     padding-left: 10px;
+    font-weight: 100;
 }
 
 div.locations:hover .popover, div.amenities:hover .popover{

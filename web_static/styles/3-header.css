@@ -4,7 +4,11 @@ header{
     width: 100%;
     border-bottom: 1px solid #CCCCCC;
     line-height: 60px;
-    position: relative;
+    margin-bottom: 20px;
+    padding-bottom: 0px;
+    position: sticky;
+    top: 0;
+    z-index: 999;
 }
 
 .top-logo{

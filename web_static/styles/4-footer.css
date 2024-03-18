@@ -1,6 +1,4 @@
-.footer {
-    position: absolute; bottom: 0; width: 100%;
-}
+
 footer {
     background-color: white;
     height: 60px;
@@ -8,4 +6,11 @@ footer {
     text-align:center;
     border-top: 1px solid #CCCCCC;
     line-height: 60px;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0%;
+    width: 100%;
+    z-index: 999;
 }
