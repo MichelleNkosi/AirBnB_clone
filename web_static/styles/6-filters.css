@@ -70,9 +70,10 @@ section.filters h4{
 .popover{
     box-sizing: border-box;
     display: none;
+    z-index: 800;
     top: 100%;
     position: absolute;
-    color: #FAFAFA;
+    background-color: #FAFAFA;
     width: 100%;
     border: 1px solid #DDDDDD;
     border-radius: 4px;
