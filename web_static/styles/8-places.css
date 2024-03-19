@@ -11,6 +11,7 @@ section.places h1 {
 section.places .articles{
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 section.places article{
