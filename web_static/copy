@@ -2,10 +2,10 @@
 
 cp $1-index.html $2-index.html
 
-# cp 7-index.html 8-index.html
+# cp 8-index.html 101-index.html
 
 cp styles/$1-filters.css styles/$2-filters.css
 
-# cp styles/7-places.css styles/8-places.css
+# cp styles/8-places.css styles/101-places.css
 
 echo "Version $2 of files created"
