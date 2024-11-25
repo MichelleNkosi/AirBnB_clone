@@ -1,17 +1,15 @@
-
 footer {
-    background-color: white;
+    background-color: #FF5A5F;
     height: 60px;
     width: 100%;
-    text-align:center;
     border-top: 1px solid #CCCCCC;
-    line-height: 60px;
-}
-
-.footer {
-    position: sticky;
-    margin-top: 10px;
+    color: #484848;
+    position: fixed;
     bottom: 0;
-    width: 100%;
-    z-index: 999;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px 0;
 }

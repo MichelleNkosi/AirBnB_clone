@@ -1,20 +1,19 @@
-.places{
-    max-width: 1000px;
+.places {
+    padding: 20px;
 }
 
-section.places h1 {
-    text-align: left;
+.places h1 {
     font-size: 30px;
-    margin-bottom: 0px;
+    text-align: left;
 }
 
-section.places .articles{
+.place-list {
     display: flex;
     flex-wrap: wrap;
+    gap: 20px;
 }
 
-section.places article{
-    position: relative;
+.place {
     width: 390px;
     padding: 20px;
     margin: 20px;
@@ -22,7 +21,7 @@ section.places article{
     border-radius: 4px;
 }
 
-section.places article h2{
-    font-size: 30px;
+.place h2 {
     text-align: center;
+    font-size: 30px;
 }
